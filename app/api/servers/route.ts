@@ -6,6 +6,7 @@ import { MemberRole } from '@prisma/client'
 import { currentProfile } from '@/lib/current-profile'
 import { db } from '@/lib/db'
 
+// create server
 export const POST = async (req: Request) => {
   try {
     const { name, imageUrl } = await req.json()
@@ -25,7 +26,7 @@ export const POST = async (req: Request) => {
           create: [{ name: 'general', profileId: profile.id }],
         },
         members: {
-          create: [{ profileId: profile.id, role: MemberRole.ADMIN }],
+          create: [{ profileId: profile.id, role: MemberRole.ADMIN }], // admin create server
         },
       },
     })
