@@ -13,18 +13,27 @@ type Props = {
   onChange: (url?: string) => void
   value: string
   endpoint: 'messageFile' | 'serverImage'
+  actionType: 'add' | 'edit'
 }
 
-export const FileUpload: FC<Props> = ({ onChange, value, endpoint }) => {
+export const FileUpload: FC<Props> = ({
+  onChange,
+  value,
+  endpoint,
+  actionType,
+}) => {
   const fileType = value?.split('.').pop()
 
   const deleteImage = async () => {
     onChange('')
-    const imageId = value?.split('/').pop()
-    try {
-      await axios.delete(`/api/uploadthing/${imageId}`)
-    } catch (error) {
-      console.log(error)
+    // when user create a server and delete the server photo
+    if (actionType === 'add') {
+      try {
+        const imageId = value?.split('/').pop()
+        await axios.delete(`/api/uploadthing/${imageId}`)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 

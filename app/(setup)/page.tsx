@@ -16,6 +16,7 @@ const SetupPage = async () => {
     },
   })
 
+  // if member own a server or be in a server
   if (server) {
     return redirect(`/servers/${server.id}`)
   }

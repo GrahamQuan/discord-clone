@@ -97,6 +97,7 @@ const InitialModal = () => {
                           endpoint="serverImage"
                           value={field.value}
                           onChange={field.onChange}
+                          actionType="add"
                         />
                       </FormControl>
                     </FormItem>

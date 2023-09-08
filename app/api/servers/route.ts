@@ -23,7 +23,7 @@ export const POST = async (req: Request) => {
         imageUrl,
         inviteCode: uuidv4(),
         channels: {
-          create: [{ name: 'general', profileId: profile.id }],
+          create: [{ name: 'general', profileId: profile.id }], // first channel will be named "general"
         },
         members: {
           create: [{ profileId: profile.id, role: MemberRole.ADMIN }], // admin create server

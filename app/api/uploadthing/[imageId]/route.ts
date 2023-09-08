@@ -11,7 +11,7 @@ type ParamsType = {
 export const DELETE = async (req: Request, { params }: ParamsType) => {
   const { imageId } = params
   if (!imageId) {
-    return NextResponse.error()
+    return new NextResponse('Image ID Missing', { status: 400 })
   }
   try {
     await utapi.deleteFiles(imageId)
