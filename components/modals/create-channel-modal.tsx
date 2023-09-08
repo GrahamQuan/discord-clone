@@ -33,6 +33,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useModal } from '@/hooks/use-modal-store'
+import { useEffect } from 'react'
 
 const formSchema = z.object({
   name: z
@@ -47,19 +48,29 @@ const formSchema = z.object({
 })
 
 export const CreateChannelModal = () => {
-  const { isOpen, onClose, type } = useModal()
+  const { isOpen, onClose, type, data } = useModal()
+  const { channelType } = data
   const router = useRouter()
   const params = useParams()
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      type: ChannelType.TEXT,
+      type: channelType || ChannelType.TEXT,
     },
   })
 
   const isModalOpen = isOpen && type === 'createChannel'
   const isLoading = form.formState.isSubmitting
+
+  useEffect(() => {
+    if (channelType) {
+      form.setValue('type', channelType)
+    } else {
+      form.setValue('type', ChannelType.TEXT)
+    }
+  }, [channelType, form])
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -89,7 +100,11 @@ export const CreateChannelModal = () => {
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Create Channel
+            Create{' '}
+            {channelType && (
+              <span className="capitalize">{channelType?.toLowerCase()} </span>
+            )}
+            Channel
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -122,7 +137,7 @@ export const CreateChannelModal = () => {
                   <FormItem>
                     <FormLabel>Channel Type</FormLabel>
                     <Select
-                      disabled={isLoading}
+                      disabled={isLoading || !!channelType}
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
