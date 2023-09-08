@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
 import { UserAvatar } from '@/components/user-avatar'
+import { ActionTooltip } from '@/components/action-tooltip'
 
 interface ServerMemberProps {
   member: Member & { profile: Profile }
@@ -15,9 +16,15 @@ interface ServerMemberProps {
 const roleIconMap = {
   [MemberRole.GUEST]: null,
   [MemberRole.MODERATOR]: (
-    <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />
+    <ActionTooltip label="Moderator" side="top">
+      <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />
+    </ActionTooltip>
   ),
-  [MemberRole.ADMIN]: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />,
+  [MemberRole.ADMIN]: (
+    <ActionTooltip label="Admin" side="top">
+      <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />
+    </ActionTooltip>
+  ),
 }
 
 export const ServerMember = ({ member, server }: ServerMemberProps) => {
