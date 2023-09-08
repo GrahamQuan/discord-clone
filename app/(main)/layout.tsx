@@ -1,6 +1,6 @@
 import { type ReactNode, type FC } from 'react'
 
-import NavigationSidebar from '@/components/navigation/navigation-sidebar'
+import { NavigationSidebar } from '@/components/navigation/navigation-sidebar'
 
 type Props = {
   children: ReactNode

@@ -10,7 +10,7 @@ import { ModeToggle } from '@/components/mode-theme'
 import { NavigationAction } from './navigation-action'
 import { NavigationItem } from './navigation-item'
 
-const NavigationSidebar = async () => {
+export const NavigationSidebar = async () => {
   const profile = await currentProfile()
 
   if (!profile) {
@@ -56,5 +56,3 @@ const NavigationSidebar = async () => {
     </div>
   )
 }
-
-export default NavigationSidebar
