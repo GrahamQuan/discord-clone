@@ -11,9 +11,9 @@ export const SocketIndicator = () => {
   if (!isConnected) {
     return (
       <>
-        <SignalHigh className="absolute text-gray-400" />
+        <SignalHigh className="relative text-gray-400" />
         <ActionTooltip label="Fallback: Polling every 1s" side="bottom">
-          <SignalLow className="text-yellow-600 relative inset-x-0 inset-y-0" />
+          <SignalLow className="text-yellow-600 absolute" />
         </ActionTooltip>
       </>
     )
