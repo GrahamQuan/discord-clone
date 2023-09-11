@@ -95,8 +95,8 @@ export const ChatInput: FC<Props> = ({ apiUrl, query, name, type }) => {
                   <ActionTooltip side="top" label="Send">
                     <div
                       className={cn(
-                        'absolute transition right-8 hover:cursor-pointer p-1 rounded-md',
-                        hasContent ? 'bg-[#19c37d]' : ''
+                        'absolute transition right-8 p-1 rounded-md',
+                        hasContent ? 'bg-[#19c37d] hover:cursor-pointer' : ''
                       )}
                       onClick={form.handleSubmit(onSubmit)}
                     >
