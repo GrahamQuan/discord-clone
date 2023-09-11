@@ -11,6 +11,7 @@ import { useChatQuery } from '@/hooks/use-chat-query'
 import DiscordIcon from '@/public/discord.png'
 import { ChatWelcome } from './chat-welcome'
 import CahtItem from './chat-item'
+import { useChatSocket } from '@/hooks/use-chat-socket'
 
 const DATE_FORMAT = 'yyyy/MM/dd HH:mm:ss'
 
@@ -54,6 +55,8 @@ export const ChatMessages: FC<Props> = ({
       paramKey,
       paramValue,
     })
+
+  useChatSocket({ queryKey, addKey, updateKey })
 
   if (status === 'loading') {
     return (
